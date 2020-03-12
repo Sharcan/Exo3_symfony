@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matières{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                {{form_start(updateMatiere)}}
+                {{form_row(updateMatiere.name)}}
+                {{form_row(updateMatiere.coefficient)}}
+                <button class="btn btn-primary">Mettre à jour la matière</button>
+                {{form_end(updateMatiere)}}
+            </div>
+        </div>
+
+        <div class="col-6">
+            {{matiere.name}} {{matiere.coefficient}}<br/>
+            <a href="{{path('removeMatiere', {id: matiere.id})}}"><button class="btn btn-danger">Retirer matière</button></a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

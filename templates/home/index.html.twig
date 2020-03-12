@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <h2>{{"Ajouter une note"|trans}}</h2><br>
+                    {{form_start(noteForm)}} 
+                    {{form_row(noteForm.note)}}
+                    <label for="matiereId">Selectionner une matiere</label><br>
+                    <select name="matiereId" id="matiereId">
+                        {% for matiere in matieres %}
+                            <option value="{{matiere.id}}">{{matiere.name}} - coeff. {{matiere.coefficient}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button type="submit" class="btn btn-primary">Ajouter la note</button>
+                    {{form_end(noteForm)}}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="jumbotron">
+                    <h1 class="display-8">Notes de l'etudiant</h1>
+                    <ul>
+                        {% for note in notes %}
+                            <li>
+                                <span class="badge badge-success">{{note.note}}/20</span> - <b>{{note.matiere.name}}</b> coeff. <b>{{note.matiere.coefficient}}</b>
+                                Ajouté le {{note.added|date('d/m/Y h:i:s')}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <hr class="my-4">
+                    <h3>Moyenne de l'etudiant</h3>
+                    <p>Moyenne: <span class="badge badge-success">{{moyenne|round(2)}}/20</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

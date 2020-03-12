@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matières{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                {{form_start(matiereForm)}}
+                {{form_row(matiereForm.name)}}
+                {{form_row(matiereForm.coefficient)}}
+                <button class="btn btn-primary">Nouvelle matière</button>
+                {{form_end(matiereForm)}}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <ul>
+                {% for matiere in matieres %}
+                    <li>Matiere: {{matiere.name}} | Coefficient: {{matiere.coefficient}}</li><br>
+                    <a href="{{path('selectedMatiere', {id: matiere.id})}}"><button class="btn btn-warning">Voir la matière</button></a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
